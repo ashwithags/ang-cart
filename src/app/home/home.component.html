@@ -1,13 +1,39 @@
 <div class="container-fulid">
     <div class="row">
-        <img src="">
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../assets/623693f65ed8766f.webp" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/785781fd1237d832.webp" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/b31a526431a68267.webp" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-md-2 col-sm-1">
-            <h1>Categories</h1>
-            <app-product></app-product>
+        <div class="col-lg-3 col-md-2 col-sm-1">
+            <h1 class="page-title">{{page}}</h1>
+           
+            <ul class="list-group">
+              <li class="list-group-item"*ngFor="let category of ProductCategory" (click)="fetchProduct(category)">{{category}}</li>
+            </ul>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <app-products-grid [productData]="ProductList" ></app-products-grid>
         </div>
     </div>
 </div>

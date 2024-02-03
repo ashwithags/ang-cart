@@ -1,0 +1,8 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #eaeaea;
+    padding: 30px;
+    grid-gap: 30px 30px;
+    gap: 30px 30px;
+  }
