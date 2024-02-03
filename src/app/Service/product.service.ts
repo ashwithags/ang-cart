@@ -2,53 +2,53 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators'
+import { Product } from '../model/product.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-private ProductUrl='https://dummyjson.com/products';
+  ProductUrl = 'https://dummyjson.com/products';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getProductList():Observable<any>{
-     return this.http.get<any>(this.ProductUrl).pipe(
+  getProductList(): Observable<any> {
+    return this.http.get<any>(this.ProductUrl + '?limit=0').pipe(
       catchError(this.hadelError)
-     )
+    )
   }
 
 
+  fetchSingleProduct(prodId: number): Observable<Product> {
 
- fetchSingleProduct(prodId:any):Observable<any>{
-
-    return this.http.get('https://dummyjson.com/products/'+prodId).pipe(
+    return this.http.get<Product>(this.ProductUrl + '/' + prodId).pipe(
       catchError(this.hadelError)
     )
 
   }
 
 
-  getProductCategory(category:String):Observable<any>{
-      return this.http.get<any>('https://dummyjson.com/products/category/'+category).pipe(
-        catchError(this.hadelError)
-      )
+  getProductCategory(category: String): Observable<any> {
+    return this.http.get<any>(this.ProductUrl + '/category/' + category).pipe(
+      catchError(this.hadelError)
+    )
   }
 
 
+  getLimitedProduct(limit: Number): Observable<any> {
+    return this.http.get<any>(this.ProductUrl + '?limit=' + limit).pipe(
+      catchError(this.hadelError)
+    )
+  }
 
 
-
-
-
-
-
-  private hadelError(err:HttpErrorResponse):Observable<any>{
-    let errMsg;
-    if(err.error instanceof Error){
+  private hadelError(err: HttpErrorResponse): Observable<any> {
+    let errMsg: any;
+    if (err.error instanceof Error) {
       errMsg = err.message;
     }
-    else{
+    else {
       errMsg = err.status;
     }
     return throwError(errMsg);

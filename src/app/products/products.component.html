@@ -1,14 +1,53 @@
-<div class="grid-container">
-    <div class="grid-item" *ngFor="let prod of productsList.products">
-        <div class="card" style="width: 18rem;">
+<section style="padding-top: 30px;">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3">
+        <label>Limit: </label>
+        <select [(ngModel)]="ProductLimit" (change)="UpdateLimit($event)">
+          <option *ngFor="let limit of prodLimitOptions" [value]="limit">{{limit}}</option>
+        </select>
+      </div>
+
+
+      <div class="col-lg-4">
+        <label>Sort On</label>
+        <select [(ngModel)]="sortProductSelected">
+          <option *ngFor="let sortOption of sortProductOptions" [value]="sortOption">{{sortOption}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-4">
+        <label for="vol">Price Range:</label>
+        <input type="range" id="vol" name="vol" min="10" max="1500" step="10" [(ngModel)]="priceRange">
+        <span>{{priceRange}}</span>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="grid-container">
+        <div class="grid-item" *ngFor="let prod of productsList.products |filterOnPrice:priceRange | sort:sortProductSelected ">
+          <div class="card" style="width: 18rem;border: 0px;">
             <img src="{{prod.thumbnail}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{prod.brand}}</h5>
-              <p class="card-text">{{prod.price}}</p>
+              <p class="card-text">${{prod.price}}</p>
               <p class="card-text">{{prod.description}}</p>
               <a target="_blank" class="btn btn-primary" (click)="viewProduct(prod.id)">View Product</a>
             </div>
           </div>
-    </div>
-</div>
+        </div>
+      </div>
 
+
+    </div>
+
+  </div>
+</section>

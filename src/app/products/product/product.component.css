@@ -1,0 +1,11 @@
+span.originalPrice {
+    text-decoration: line-through;
+    color: #8d8b8b;
+    font-size: 16px;
+}
+
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: #dedede;
+    color: #000;
+}
