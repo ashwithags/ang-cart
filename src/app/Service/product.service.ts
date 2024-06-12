@@ -29,8 +29,10 @@ export class ProductService {
   }
 
 
-  getProductCategory(category: String): Observable<any> {
-    return this.http.get<any>(this.ProductUrl + '/category/' + category).pipe(
+  getProductCategory(category: any): Observable<any> {
+  //  return this.http.get<any>(this.ProductUrl + '/category/' + category).pipe(
+    return this.http.get<any>(category.url).pipe(
+
       catchError(this.hadelError)
     )
   }

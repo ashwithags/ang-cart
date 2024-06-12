@@ -9,7 +9,7 @@ import { ProductService } from '../Service/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  public ProductCategory: string[] = [];
+  public ProductCategory: any[] = [];
   public ProductList: any[] = [];
   public page: string = "Categories";
 
